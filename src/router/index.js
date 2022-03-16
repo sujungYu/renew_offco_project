@@ -7,6 +7,10 @@ export const router = new VueRouter({
   mode: 'history',
   routes: [
     {
+      path: '/',
+      redirect: '/login',
+    },
+    {
       path: '/signup',
       component: () => import('@/views/SignupPage.vue'),
     },

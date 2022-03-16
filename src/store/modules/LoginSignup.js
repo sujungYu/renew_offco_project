@@ -20,6 +20,9 @@ const LoginSignup = {
     loginUser(state, payload) {
       state.nowUserId = payload;
     },
+    logOut(state) {
+      state.nowUserId = '';
+    },
   },
   actions: {
     async checkId({ commit }, payload) {

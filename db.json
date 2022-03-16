@@ -14,5 +14,60 @@
       "userpassword": "1234",
       "id": 2
     }
+  ],
+  "rooms": [
+    {
+      "roomname": "가",
+      "managerId": "",
+      "id": 1
+    },
+    {
+      "roomname": "가",
+      "managerId": "",
+      "id": 2
+    },
+    {
+      "roomname": "ㄴㅇ루",
+      "managerId": "1",
+      "id": 3
+    },
+    {
+      "roomname": "ㅇ",
+      "managerId": "1",
+      "usersId": [],
+      "id": 4
+    },
+    {
+      "roomname": "나",
+      "managerId": "1",
+      "usersId": [
+        "1"
+      ],
+      "id": 5
+    },
+    {
+      "roomname": "라",
+      "managerId": "1",
+      "usersId": {
+        "user": "1"
+      },
+      "id": 6
+    },
+    {
+      "roomname": "휴",
+      "managerId": "1",
+      "usersId": {
+        "user": "1"
+      },
+      "id": 7
+    },
+    {
+      "roomname": "rb",
+      "managerId": "1",
+      "usersId": {
+        "user": "1"
+      },
+      "id": 8
+    }
   ]
 }
