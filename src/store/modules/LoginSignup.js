@@ -8,6 +8,7 @@ const LoginSignup = {
     userName: '',
     // 로그인
     nowUserId: '',
+    nowUserName: '',
   },
   mutations: {
     checkIdMessage(state, payload) {
@@ -17,8 +18,11 @@ const LoginSignup = {
     setUser(state, payload) {
       state.userName = payload;
     },
-    loginUser(state, payload) {
+    loginUserId(state, payload) {
       state.nowUserId = payload;
+    },
+    loginUserName(state, payload) {
+      state.nowUserName = payload;
     },
     logOut(state) {
       state.nowUserId = '';
@@ -64,7 +68,9 @@ const LoginSignup = {
       // eslint-disable-next-line prettier/prettier
       await axios.get(`${'http://localhost:8000'}/signup?userid=${payload}`)
         .then(res => {
-          commit('loginUser', res.data[0].id);
+          console.log(res.data[0]);
+          commit('loginUserId', res.data[0].id);
+          commit('loginUserName', res.data[0].username);
           return res.data.id;
         })
         .catch(err => {
@@ -72,6 +78,13 @@ const LoginSignup = {
         });
     },
   },
-  getters: {},
+  getters: {
+    loginUserId(state) {
+      return state.nowUserId;
+    },
+    loginUserName(state) {
+      return state.nowUserName;
+    },
+  },
 };
 export default LoginSignup;

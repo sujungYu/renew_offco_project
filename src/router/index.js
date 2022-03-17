@@ -23,6 +23,14 @@ export const router = new VueRouter({
       component: () => import('@/views/HomePage.vue'),
     },
     {
+      path: '/roomhome/:id',
+      component: () => import('@/views/RoomHomePage.vue'),
+    },
+    {
+      path: '/roomhome/n/:token',
+      component: () => import('@/views/AcceptRoomPage.vue'),
+    },
+    {
       path: '*',
       component: () => import('@/views/NotFoundPage.vue'),
     },

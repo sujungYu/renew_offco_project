@@ -19,8 +19,14 @@ export default {
     create() {
       const roomInfo = {
         roomname: this.roomname,
-        managerId: this.$route.params.id,
-        usersId: { user: this.$route.params.id },
+        managerId: this.$store.state.LoginSignup.nowUserI,
+        users: [
+          {
+            userId: this.$store.state.LoginSignup.nowUserId,
+            userName: this.$store.state.LoginSignup.nowUserName,
+          },
+        ],
+        inviteUrl: {},
       };
       this.$store.dispatch('newRoom', roomInfo);
     },
