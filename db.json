@@ -13,33 +13,56 @@
       "userid": "you",
       "userpassword": "1234",
       "id": 2
+    },
+    {
+      "username": "나",
+      "usermail": "a@a.com",
+      "userid": "me",
+      "userpassword": "1234",
+      "id": 3
     }
   ],
   "rooms": [
     {
-      "roomname": "나나나",
+      "roomname": "교",
       "users": [
         {
           "userId": 1,
           "userName": "유수정"
+        },
+        {
+          "userId": 1,
+          "userName": "유수정"
+        },
+        {
+          "userId": 3,
+          "userName": "나"
         }
       ],
-      "inviteUrl": "2pvf7noxe1mbpuwbf2cttv",
+      "inviteUrl": "mqdu0gr6o6cupiwn3ggf",
       "id": 1
     },
     {
-      "userId": "",
+      "roomname": "ey",
+      "users": [
+        {
+          "userId": "",
+          "userName": ""
+        }
+      ],
+      "inviteUrl": {},
       "id": 2
     },
     {
-      "userId": "",
-      "userName": "",
+      "roomname": "벼",
+      "users": [
+        {
+          "userId": 3,
+          "userName": "나"
+        }
+      ],
+      "inviteUrl": {},
       "id": 3
-    },
-    {
-      "userId": "",
-      "userName": "",
-      "id": 4
     }
   ]
 }

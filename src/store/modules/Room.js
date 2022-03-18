@@ -53,8 +53,9 @@ const Room = {
   actions: {
     async myRoomList({ commit }, payload) {
       console.log(payload);
+      //이부분 접근방식 수정
       // eslint-disable-next-line prettier/prettier
-      await axios.get(`${'http://localhost:8000'}/rooms/?usersuserId=${payload}`)
+      await axios.get(`${'http://localhost:8000'}/rooms/users.userId=${payload}`)
         .then(res => {
           console.log(res.data);
           for (let i = 0; i < res.data.length; i++) {
@@ -86,8 +87,6 @@ const Room = {
       // eslint-disable-next-line prettier/prettier
        await axios.get(`${'http://localhost:8000'}/rooms?id=${payload}`)
         .then(res => {
-          console.log(res.data[0].users[0]);
-          console.log(res.data[0].id);
           commit('setRoomId', res.data[0].id);
           commit('setRoomName', res.data[0].roomname);
           for (let i = 0; i < res.data.length; i++) {
@@ -101,7 +100,6 @@ const Room = {
         });
     },
     inviteToken({ commit }, payload) {
-      console.log(this.getters.RoomId);
       // eslint-disable-next-line prettier/prettier
       axios.patch(`${'http://localhost:8000'}/rooms/${this.getters.RoomId}`, {inviteUrl: payload})
         .then(res => {
@@ -117,8 +115,6 @@ const Room = {
       // eslint-disable-next-line prettier/prettier
       axios.get(`${'http://localhost:8000'}/rooms?inviteUrl=${payload}`)
         .then(res => {
-          console.log(this.state.LoginSignup.nowUserId);
-          console.log(res.data);
           if (res.data[0]) {
             commit('useToken', true);
             commit('TokenId', res.data[0].id);
@@ -129,20 +125,43 @@ const Room = {
     },
     async RoomMember({ commit }, payload) {
       const userInfo = {
-        userId: this.getters.loginUserId,
-        userName: this.getters.loginUserName,
+        userId: JSON.parse(localStorage.getItem('user')).userId,
+        userName: JSON.parse(localStorage.getItem('user')).userName,
       };
       console.log(userInfo);
       // eslint-disable-next-line prettier/prettier
-      await axios.post(`${'http://localhost:8000'}/rooms?id=${payload}/users`, userInfo)
+      await axios.get(`${'http://localhost:8000'}/rooms?id=${payload}`)
         .then(res => {
-          console.log(res.data);
-          console.log(res);
-          commit('setRoomId', payload);
+          const arr = res.data[0].users;
+          console.log(arr);
+          const newInfo = arr.concat(userInfo);
+          console.log(newInfo);
+          // eslint-disable-next-line prettier/prettier
+          axios.patch(`${'http://localhost:8000'}/rooms/${payload}`, {users: newInfo})
+            .then(res => {
+              console.log(res);
+              commit('setRoomId', payload);
+            })
+            .catch(err => {
+              console.log(err);
+            });
+          return res.data;
         })
         .catch(err => {
           console.log(err);
         });
+
+      // await axios.post(`${'http://localhost:8000'}/rooms/${payload}/users/`, userInfo)
+      //   .then(res => {
+      //     console.log(userInfo);
+      //     console.log(payload);
+      //     console.log(res.data);
+      //     commit('setRoomId', payload);
+      //     return res.data;
+      //   })
+      //   .catch(err => {
+      //     console.log(err);
+      //   });
     },
   },
   getters: {

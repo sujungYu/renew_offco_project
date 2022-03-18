@@ -71,7 +71,14 @@ const LoginSignup = {
           console.log(res.data[0]);
           commit('loginUserId', res.data[0].id);
           commit('loginUserName', res.data[0].username);
-          return res.data.id;
+          localStorage.setItem(
+            'user',
+            JSON.stringify({
+              userId: res.data[0].id,
+              userName: res.data[0].username,
+            }),
+          );
+          return res.data;
         })
         .catch(err => {
           console.log(err);
