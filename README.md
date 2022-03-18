@@ -17,3 +17,11 @@ HomePage, NotFoundPage, Modal(전체홈 컴포넌트)
 2. 달력부분에도 사용되는 modal 컴포넌트는 common 컴포넌트를 사용해 구현
 (slot을 사용했음)
 3. 사용자가 없는 페이지에 접근할 경우를 대비해 NotFoundPage를 만들어 주었음
+
+##3.17
+RoomHomePage, AcceptRoomPage(각방홈 컴포넌트)
+1. common폴더안에 있는 modal컴포넌트를 재활용해 초대링크 창을 만들었음
+2. NavBar를 컴포넌트로 따로 분리
+3. 이번 업데이트에는 vuex만 이용해 데이터 관리를 하려했으나 부여받은 초대링크를 붙여 넣는 과정에서 
+페이지 새로고침이 발생하고 이로인해 vuex안 state데이터가 초기화되는 문제가 발생했다.
+이러한 문제는 localStorage를 사용하거나 vuex-persistedstate를 이용해 해결할 예정임
