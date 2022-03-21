@@ -16,4 +16,12 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+a {
+  color: rgb(57, 62, 70);
+  text-decoration: none;
+}
+a.router-link-exact-active {
+  color: rgb(255, 134, 94);
+}
+</style>

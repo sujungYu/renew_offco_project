@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="top">
-      offco<i class="fas fa-sign-out-alt out" v-on:click="out"></i>
+      offco<i class="fas fa-sign-out-alt out" @click="out"></i>
     </div>
     <div class="back">
       <h1>전체</h1>
@@ -31,4 +31,43 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Kite+One&display=swap');
+div {
+  margin: 0 auto;
+  font-size: 10px;
+  text-align: center;
+}
+.top {
+  /* width: 100vw; */
+  height: 9vh;
+  background-color: rgb(255, 134, 94);
+  font-size: 5.3vh;
+  color: white;
+  font-family: 'Kite One', sans-serif;
+  text-align: center;
+  padding-left: 3vw;
+}
+.back {
+  width: 91vw;
+  height: 87vh;
+  border: 1px solid rgb(255, 134, 94);
+  border-radius: 15px;
+  background-color: white;
+  margin: 0;
+  position: relative;
+  margin: 1.6vh auto;
+}
+h1 {
+  color: rgb(162, 210, 255);
+  font-size: 1.8em;
+  font-family: 'Gothic A1', sans-serif;
+  margin: 1.7vh 0;
+  font-weight: lighter;
+}
+.out {
+  position: absolute;
+  left: 84vw;
+  top: 2vh;
+}
+</style>

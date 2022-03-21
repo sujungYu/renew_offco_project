@@ -31,6 +31,10 @@ export const router = new VueRouter({
       component: () => import('@/views/AcceptRoomPage.vue'),
     },
     {
+      path: '/calendar/:id',
+      component: () => import('@/views/CalendarPage.vue'),
+    },
+    {
       path: '*',
       component: () => import('@/views/NotFoundPage.vue'),
     },

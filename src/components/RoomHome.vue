@@ -30,18 +30,46 @@ export default {
   },
   async created() {
     this.$store.commit('initUserData');
-    const roomId = this.$route.params.id;
-    await this.$store.dispatch('setRooms', roomId);
+    await this.$store.dispatch('setRooms', this.$route.params.id);
     this.users = this.$store.state.Room.roomUsers;
-    console.log(this.users);
   },
   methods: {
     invite() {
       this.showModal = !this.showModal;
-      // this.$router.push('./invite')
     },
   },
 };
 </script>
 
-<style></style>
+<style scoped>
+ul {
+  width: 81vw;
+  margin: 0 auto;
+  padding-left: 0px;
+  list-style-type: none;
+  text-align: left;
+}
+li {
+  margin-left: 4vh;
+}
+h2 {
+  margin: 4vh auto;
+  font-size: 1.9em;
+  font-weight: 400;
+  font-family: 'Kite One', sans-serif;
+}
+.invite {
+  padding: 0;
+  width: 36.3vw;
+  height: 6.5vh;
+  border: none;
+  border-radius: 20px;
+  background-color: rgb(255, 134, 94);
+  color: white;
+  font-size: 1.8em;
+  font-family: 'Kite One', sans-serif;
+  left: 22vw;
+  /* font-weight: 600; */
+  position: relative;
+}
+</style>

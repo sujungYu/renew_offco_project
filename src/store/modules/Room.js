@@ -5,6 +5,7 @@ const Room = {
     //전체홈
     myRooms: [],
     newRoom: [],
+    goRoomId: '',
 
     // 각 방홈
     roomUsers: [],
@@ -28,17 +29,18 @@ const Room = {
     newRoom(state, payload) {
       state.newRoom = payload;
     },
+    goRoomId(state, payload) {
+      state.goRoomId = payload;
+      console.log(state.goRoomId);
+    },
     setRoomName(state, payload) {
       state.roomName = payload;
     },
     setRoomUsers(state, payload) {
-      console.log(payload);
-      state.roomUsers.push(payload);
-      console.log(state.roomUsers);
+      state.roomUsers = payload;
     },
     setRoomId(state, payload) {
       state.roomId = payload;
-      console.log(state.roomId);
     },
     setToken(state, payload) {
       state.token = payload;
@@ -52,47 +54,66 @@ const Room = {
   },
   actions: {
     async myRoomList({ commit }, payload) {
-      console.log(payload);
-      //이부분 접근방식 수정
+      const newRoomList = [];
       // eslint-disable-next-line prettier/prettier
-      await axios.get(`${'http://localhost:8000'}/rooms/users.userId=${payload}`)
+      await axios.get(`${'http://localhost:8000'}/rooms`)
         .then(res => {
-          console.log(res.data);
-          for (let i = 0; i < res.data.length; i++) {
-            res.data[i] = {
-              roomName: res.data[i].roomname,
-              roomId: res.data[i].id,
+          const roomFilter = [];
+          res.data.filter(e => {
+            e.users.filter(d => {
+              if (d.userId == payload) {
+                return roomFilter.push(e);
+              }
+            });
+          });
+          for (let i = 0; i < roomFilter.length; i++) {
+            newRoomList[i] = {
+              roomName: roomFilter[i].roomname,
+              roomId: roomFilter[i].id,
             };
           }
-          console.log(res.data);
-          commit('roomList', res.data);
+          commit('roomList', newRoomList);
           return res.data;
         })
         .catch(err => {
           console.log(err);
         });
     },
-    newRoom({ commit }, payload) {
+    async newRoom({ commit }, payload) {
       // eslint-disable-next-line prettier/prettier
-        axios.post(`${'http://localhost:8000'}/rooms`, payload)
+        await axios.post(`${'http://localhost:8000'}/rooms`, payload)
         .then(res => {
           console.log(res);
           commit('newRoom', payload);
+          return res.data;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    async goToRoom({ commit }, payload) {
+      // eslint-disable-next-line prettier/prettier
+      await axios.get(`${'http://localhost:8000'}/rooms?roomname=${payload}`)
+        .then(res => {
+          console.log(res.data.id);
+          commit('goRoomId', res.data[0].id);
+          return res.data.id;
         })
         .catch(err => {
           console.log(err);
         });
     },
     async setRooms({ commit }, payload) {
+      const newSetName = [];
       // eslint-disable-next-line prettier/prettier
        await axios.get(`${'http://localhost:8000'}/rooms?id=${payload}`)
         .then(res => {
           commit('setRoomId', res.data[0].id);
           commit('setRoomName', res.data[0].roomname);
-          for (let i = 0; i < res.data.length; i++) {
-            res.data[i].users = res.data[i].users[i].userName;
+          for (let i = 0; i < res.data[0].users.length; i++) {
+            newSetName[i] = res.data[0].users[i].userName;
           }
-          commit('setRoomUsers', res.data[0].users);
+          commit('setRoomUsers', newSetName);
           return res.data[0];
         })
         .catch(err => {
@@ -128,14 +149,11 @@ const Room = {
         userId: JSON.parse(localStorage.getItem('user')).userId,
         userName: JSON.parse(localStorage.getItem('user')).userName,
       };
-      console.log(userInfo);
       // eslint-disable-next-line prettier/prettier
       await axios.get(`${'http://localhost:8000'}/rooms?id=${payload}`)
         .then(res => {
-          const arr = res.data[0].users;
-          console.log(arr);
-          const newInfo = arr.concat(userInfo);
-          console.log(newInfo);
+          const getMember = res.data[0].users;
+          const newInfo = getMember.concat(userInfo);
           // eslint-disable-next-line prettier/prettier
           axios.patch(`${'http://localhost:8000'}/rooms/${payload}`, {users: newInfo})
             .then(res => {
@@ -150,18 +168,6 @@ const Room = {
         .catch(err => {
           console.log(err);
         });
-
-      // await axios.post(`${'http://localhost:8000'}/rooms/${payload}/users/`, userInfo)
-      //   .then(res => {
-      //     console.log(userInfo);
-      //     console.log(payload);
-      //     console.log(res.data);
-      //     commit('setRoomId', payload);
-      //     return res.data;
-      //   })
-      //   .catch(err => {
-      //     console.log(err);
-      //   });
     },
   },
   getters: {
