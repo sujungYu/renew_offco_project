@@ -25,3 +25,8 @@ RoomHomePage, AcceptRoomPage(각방홈 컴포넌트)
 3. 이번 업데이트에는 vuex만 이용해 데이터 관리를 하려했으나 부여받은 초대링크를 붙여 넣는 과정에서 
 페이지 새로고침이 발생하고 이로인해 vuex안 state데이터가 초기화되는 문제가 발생했다.
 이러한 문제는 localStorage를 사용하거나 vuex-persistedstate를 이용해 해결할 예정임
+
+##3.18
+store(Vuex)
+1. 각방의 정보를 가지고 있는 /rooms 안 users 배열안에 초대된 사람들의 정보도 같은 위치에 넣을 수 있게 했음(axios.get으로 users정보를 불러오고 concat로 복사한 후 axios.patch로 다시 넣었다)
+2. 대괄호 안 대괄호에 접근하는 url 관련 문제 직면
