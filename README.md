@@ -38,3 +38,9 @@ ToolBar, TodoList, CalendarPage(달력 컴포넌트)
 2. TodoList 역시 commom/Modal을 이용해 수정했음
 3. 새로고침하면 vuex의 state 값이 초기화되어 localSotage를 이용하는 코드로 수정
 
+#3.23
+css(디자인)
+1. 각방 홈 header를 common안에 넣어 재활용해 사용했음
+2. 채팅을 제외한 기능 및 디자인 구현 완료
+3. 오늘 회의에서 이전 채팅 기능 구현 때 발생했던 문제점과 해결 방안에 대해 이야기 했음
+(백을 담당하는 팀원이 3.25일까지 채팅 데이터를 구축한 후 진행할 예정)
