@@ -30,3 +30,11 @@ RoomHomePage, AcceptRoomPage(각방홈 컴포넌트)
 store(Vuex)
 1. 각방의 정보를 가지고 있는 /rooms 안 users 배열안에 초대된 사람들의 정보도 같은 위치에 넣을 수 있게 했음(axios.get으로 users정보를 불러오고 concat로 복사한 후 axios.patch로 다시 넣었다)
 2. 대괄호 안 대괄호에 접근하는 url 관련 문제 직면
+
+##3.21
+ToolBar, TodoList, CalendarPage(달력 컴포넌트)
+1. 지난번에 해결하지 못했던 대괄호 안 대괄호에 접근하는 문제 해결
+(우선 axios.get(/rooms)을 한다음 filter를 이용해 원하는 값을 가져왔음)
+2. TodoList 역시 commom/Modal을 이용해 수정했음
+3. 새로고침하면 vuex의 state 값이 초기화되어 localSotage를 이용하는 코드로 수정
+
