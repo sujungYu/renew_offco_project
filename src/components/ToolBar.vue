@@ -17,7 +17,8 @@ export default {
       roomHeader: '',
     };
   },
-  created() {
+  async created() {
+    await this.$store.dispatch('setRooms', this.$route.params.id);
     this.id = this.$route.params.id;
     this.roomHeader = this.$store.state.Room.roomName;
   },

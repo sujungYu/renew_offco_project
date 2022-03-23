@@ -22,16 +22,17 @@ const Room = {
     initUserData(state) {
       state.roomUsers = [];
     },
+    initNameData(state) {
+      state.roomName = '';
+    },
     roomList(state, payload) {
       state.myRooms = payload;
-      console.log(state.myRooms);
     },
     newRoom(state, payload) {
       state.newRoom = payload;
     },
     goRoomId(state, payload) {
       state.goRoomId = payload;
-      console.log(state.goRoomId);
     },
     setRoomName(state, payload) {
       state.roomName = payload;
@@ -83,7 +84,6 @@ const Room = {
       // eslint-disable-next-line prettier/prettier
         await axios.post(`${'http://localhost:8000'}/rooms`, payload)
         .then(res => {
-          console.log(res);
           commit('newRoom', payload);
           return res.data;
         })
@@ -95,7 +95,6 @@ const Room = {
       // eslint-disable-next-line prettier/prettier
       await axios.get(`${'http://localhost:8000'}/rooms?roomname=${payload}`)
         .then(res => {
-          console.log(res.data.id);
           commit('goRoomId', res.data[0].id);
           return res.data.id;
         })
@@ -109,11 +108,13 @@ const Room = {
        await axios.get(`${'http://localhost:8000'}/rooms?id=${payload}`)
         .then(res => {
           commit('setRoomId', res.data[0].id);
+          console.log(res.data[0].roomname);
           commit('setRoomName', res.data[0].roomname);
           for (let i = 0; i < res.data[0].users.length; i++) {
             newSetName[i] = res.data[0].users[i].userName;
           }
           commit('setRoomUsers', newSetName);
+          console.log(newSetName);
           return res.data[0];
         })
         .catch(err => {

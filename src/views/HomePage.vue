@@ -24,7 +24,8 @@ export default {
       this.showModal = !this.showModal;
     },
     out() {
-      this.$store.commit('logOut');
+      localStorage.removeItem('user');
+      // this.$store.commit('logOut');
       this.$router.push('/login');
     },
   },
