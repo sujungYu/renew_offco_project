@@ -1,7 +1,7 @@
 <template>
   <div>
     <form @submit.prevent="submitForm">
-      <h2>로그인 유지<input type="checkbox" v-model="setlogin" /></h2>
+      <!-- <h2>로그인 유지<input type="checkbox" v-model="setlogin" /></h2> -->
       <div>
         <input class="form" type="text" placeholder="아이디" v-model="userid" />
       </div>
@@ -41,7 +41,6 @@ export default {
     async submitForm() {
       await this.$store.dispatch('login', this.userid);
       const userId = this.$store.state.LoginSignup.nowUserId;
-      console.log(userId);
       this.$router.push(`/home/${userId}`);
     },
     signUp() {

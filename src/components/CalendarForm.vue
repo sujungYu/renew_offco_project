@@ -85,7 +85,7 @@ export default {
   created() {
     this.init();
     this.$store.commit('initTodo');
-    this.id = this.$route.params.id;
+    // this.id = this.$route.params.id;
   },
   methods: {
     init(param) {
@@ -211,12 +211,12 @@ export default {
         day: day,
       });
     },
-    clearAll() {
-      this.$store.commit('clearAll');
-    },
-    back() {
-      this.$router.push('/roomhome/' + this.id);
-    },
+    // clearAll() {
+    //   this.$store.commit('clearAll');
+    // },
+    // back() {
+    //   this.$router.push('/roomhome/' + this.id);
+    // },
   },
 };
 </script>
@@ -276,6 +276,7 @@ h2 {
   margin-top: 0.8em;
   width: 93vw;
   height: 87vh;
+  background-color: white;
 }
 .header {
   position: relative;

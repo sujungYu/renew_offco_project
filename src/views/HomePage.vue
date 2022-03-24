@@ -50,14 +50,26 @@ div {
   padding-left: 3vw;
 }
 .back {
+  margin: 1.6vh auto;
   width: 91vw;
-  height: 87vh;
   border: 1px solid rgb(255, 134, 94);
   border-radius: 15px;
   background-color: white;
-  margin: 0;
   position: relative;
-  margin: 1.6vh auto;
+  overflow: auto;
+}
+.back::-webkit-scrollbar {
+  width: 5px; /*스크롤바의 너비*/
+}
+
+.back::-webkit-scrollbar-thumb {
+  background-color: rgb(255, 134, 94); /*스크롤바의 색상*/
+  border-radius: 60px;
+}
+
+.back::-webkit-scrollbar-track {
+  background-color: rgba(255, 134, 94, 0); /*스크롤바 트랙 색상*/
+  border-radius: 60px;
 }
 h1 {
   color: rgb(162, 210, 255);

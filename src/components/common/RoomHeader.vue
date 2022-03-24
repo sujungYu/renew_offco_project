@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="top">
-      <i class="fas fa-arrow-left left" @click="out"></i>offco
+      <i class="fas fa-arrow-left left" @click="back"></i>offco
     </div>
   </div>
 </template>
@@ -10,13 +10,13 @@
 export default {
   data() {
     return {
-      userId: '',
+      userid: '',
     };
   },
   methods: {
-    out() {
-      this.userId = JSON.parse(localStorage.getItem('user')).userId;
-      this.$router.push('/home/' + this.userId);
+    back() {
+      this.userid = JSON.parse(localStorage.getItem('user')).userId;
+      this.$router.push('/home/' + this.userid);
     },
   },
 };

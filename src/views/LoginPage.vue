@@ -16,15 +16,9 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Kite+One&display=swap');
-div {
-  font-size: 10px;
-  background-color: rgb(254, 249, 239);
-  text-align: center;
-  width: 100vw;
-  height: 100vh;
-}
 
 h1 {
+  margin: 0.45em auto;
   display: inline-block;
   font-family: 'Kite One', sans-serif;
   font-weight: lighter;
@@ -32,7 +26,7 @@ h1 {
   font-size: 9em;
   width: 62.5vw;
   height: 22.8vh;
-  margin-top: 0.45em;
-  margin-bottom: 0;
+  /* margin-top: 0.45em;
+  margin-bottom: em; */
 }
 </style>

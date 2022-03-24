@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import { newRoom } from '@/api/index.js';
 export default {
   data() {
     return {
@@ -28,7 +29,7 @@ export default {
         ],
         inviteUrl: {},
       };
-      await this.$store.dispatch('newRoom', roomInfo);
+      await newRoom(roomInfo);
       await this.$store.dispatch('goToRoom', this.roomname);
       this.$router.push(`/roomhome/${this.$store.state.Room.goRoomId}`);
     },

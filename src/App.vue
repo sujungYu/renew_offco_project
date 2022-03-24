@@ -8,4 +8,10 @@
 export default {};
 </script>
 
-<style></style>
+<style>
+body {
+  font-size: 10px;
+  background-color: rgb(254, 249, 239);
+  text-align: center;
+}
+</style>

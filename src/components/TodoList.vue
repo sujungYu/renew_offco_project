@@ -1,13 +1,13 @@
 <template>
   <div>
-    <h1>TODAY</h1>
+    <h1>DATE</h1>
     <p>
       {{ this.$store.state.Calendar.year }}.{{
         this.$store.state.Calendar.month
       }}.{{ this.$store.state.Calendar.day }}
     </p>
     <input type="text" v-model="newTodo" />
-    <span class="addContainer" v-on:click="addTodo">
+    <span class="addContainer" @click="addTodo">
       <i class="far fa-plus-square add"></i>
     </span>
     <div class="todo">
@@ -22,12 +22,13 @@
 </template>
 
 <script>
+import { addTodo } from '@/api/index.js';
 export default {
   data() {
     return {
       newTodo: '',
       todos: [],
-      id: null,
+      id: '',
     };
   },
   created() {
@@ -57,7 +58,7 @@ export default {
           this.$store.state.Calendar.day,
         calendarId: this.id,
       };
-      this.$store.dispatch('addTodo', newTodoItem);
+      addTodo(newTodoItem);
       this.newTodo = '';
     },
   },
@@ -105,12 +106,12 @@ input {
   top: -4vh; */
 }
 .todo {
-  margin: auto;
+  margin: 3vh auto;
   border: 1px solid rgb(57, 62, 70);
   border-radius: 15px;
   width: 70vw;
   height: 51vh;
-  margin-top: 3vh;
+  /* margin-top: 3vh; */
   background-color: white;
   z-index: 10;
 }

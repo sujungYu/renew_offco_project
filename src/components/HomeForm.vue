@@ -36,7 +36,7 @@ export default {
     };
   },
   async created() {
-    this.$store.commit('initData');
+    // this.$store.commit('initData');
     await this.$store.dispatch('myRoomList', this.$route.params.id);
     this.roomList = this.$store.state.Room.myRooms;
   },
@@ -50,11 +50,11 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap');
-div {
+/* div {
   margin: 0 auto;
   font-size: 10px;
   text-align: center;
-}
+} */
 ul {
   padding-left: 0;
   list-style-type: none;

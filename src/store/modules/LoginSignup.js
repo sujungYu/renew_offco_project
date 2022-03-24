@@ -5,7 +5,7 @@ const LoginSignup = {
     //   회원가입
     idMessage: '',
     useId: '',
-    userName: '',
+    // userName: '',
     // 로그인
     nowUserId: '',
     nowUserName: '',
@@ -15,9 +15,9 @@ const LoginSignup = {
       state.idMessage = payload.message;
       state.useId = payload.useId;
     },
-    setUser(state, payload) {
-      state.userName = payload;
-    },
+    // setUser(state, payload) {
+    //   state.userName = payload;
+    // },
     loginUserId(state, payload) {
       state.nowUserId = payload;
     },
@@ -53,24 +53,23 @@ const LoginSignup = {
           console.log(err);
         });
     },
-    signUp({ commit }, payload) {
-      // eslint-disable-next-line prettier/prettier
-      axios.post(`${'http://localhost:8000'}/signup`, payload)
-        .then(res => {
-          commit('setUser', res.data.username);
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    },
+    // signUp({ commit }, payload) {
+    //   // eslint-disable-next-line prettier/prettier
+    //   axios.post(`${'http://localhost:8000'}/signup`, payload)
+    //     .then(res => {
+    //       commit('setUser', res.data.username);
+    //     })
+    //     .catch(err => {
+    //       console.log(err);
+    //     });
+    // },
     async login({ commit }, payload) {
       console.log(payload);
       // eslint-disable-next-line prettier/prettier
       await axios.get(`${'http://localhost:8000'}/signup?userid=${payload}`)
         .then(res => {
-          console.log(res.data[0]);
           commit('loginUserId', res.data[0].id);
-          commit('loginUserName', res.data[0].username);
+          // commit('loginUserName', res.data[0].username);
           localStorage.setItem(
             'user',
             JSON.stringify({

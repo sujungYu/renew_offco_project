@@ -66,6 +66,7 @@
 
 <script>
 import { validateEmail } from '@/utils/validation';
+import { signUp } from '@/api/index.js';
 export default {
   data() {
     return {
@@ -90,10 +91,17 @@ export default {
     },
     submitForm() {
       // eslint-disable-next-line prettier/prettier
-      if(this.$store.state.useId == false) {
-        alert('이미 사용중인 아이디입니다');
+      if(this.userid !=''&&this.$store.state.LoginSignup.useId == false) {
+        alert('아이디 중복확인을 해주세요');
       } else if (this.userpassword != this.checkpassword) {
         alert('비밀번호를 다시 확인해주세요');
+      } else if (
+        this.username == '' ||
+        this.usermail == '' ||
+        this.userid == '' ||
+        this.userpassword == ''
+      ) {
+        alert('입력란이 비어있습니다');
       } else {
         const newUser = {
           username: this.username,
@@ -101,7 +109,8 @@ export default {
           userid: this.userid,
           userpassword: this.userpassword,
         };
-        this.$store.dispatch('signUp', newUser);
+        signUp(newUser);
+        // this.$store.dispatch('signUp', newUser);
         alert(`${this.username} 님이 가입되었습니다.`);
         this.$router.push('./login');
       }

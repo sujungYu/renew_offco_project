@@ -29,8 +29,8 @@ export default {
     };
   },
   async created() {
-    this.$store.commit('initUserData');
-    await this.$store.dispatch('setRooms', this.$route.params.id);
+    // this.$store.commit('initUserData');
+    await this.$store.dispatch('setUsers', this.$route.params.id);
     this.users = this.$store.state.Room.roomUsers;
   },
   methods: {

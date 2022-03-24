@@ -34,6 +34,8 @@ export default {};
   /* padding: 20px; */
   background-color: rgb(254, 249, 239);
   border-radius: 15px;
+  /* 이부분을 수정해야 todo modal 문제 해결 */
+  /* min-height: 80vh; */
   min-height: 40vh;
   z-index: 10;
   opacity: 1;
