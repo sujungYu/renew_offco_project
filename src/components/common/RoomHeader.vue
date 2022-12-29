@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="top">
-      <i class="fas fa-arrow-left left" @click="back"></i>offco
+    <div class="header-container">
+      <i class="fas fa-arrow-left backward" @click="backward"></i>offco
     </div>
   </div>
 </template>
@@ -10,22 +10,23 @@
 export default {
   data() {
     return {
-      userid: '',
+      userId: '',
     };
   },
   methods: {
-    back() {
-      this.userid = JSON.parse(localStorage.getItem('user')).userId;
-      this.$router.push('/home/' + this.userid);
+    getUserId() {
+      this.userId = JSON.parse(localStorage.getItem('user')).userId;
+    },
+    backward() {
+      this.getUserId();
+      this.$router.push('/home/' + this.userId);
     },
   },
 };
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Kite+One&display=swap');
-.top {
-  /* width: 100vw; */
+.header-container {
   height: 9vh;
   background-color: rgb(255, 134, 94);
   font-size: 5.3vh;
@@ -34,7 +35,7 @@ export default {
   text-align: center;
   padding-left: 3vw;
 }
-.left {
+.backward {
   left: 4vw;
   top: 2vh;
   position: absolute;
