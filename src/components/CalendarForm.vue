@@ -85,7 +85,6 @@ export default {
   created() {
     this.init();
     this.$store.commit('initTodo');
-    // this.id = this.$route.params.id;
   },
   methods: {
     init(param) {
@@ -211,28 +210,17 @@ export default {
         day: day,
       });
     },
-    // clearAll() {
-    //   this.$store.commit('clearAll');
-    // },
-    // back() {
-    //   this.$router.push('/roomhome/' + this.id);
-    // },
   },
 };
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Kite+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 div {
   font-size: 10px;
   text-align: center;
-  /* position: relative; */
   margin: 0 auto;
 }
 .top {
-  /* width: 100vw; */
   height: 9vh;
   background-color: rgb(255, 134, 94);
   font-size: 5.3vh;
@@ -240,28 +228,12 @@ div {
   font-family: 'Kite One', sans-serif;
   text-align: center;
   padding-left: 3vw;
-  /* margin-bottom: 1.6vh; */
-  /* position: relative;
-    display: inline-block; */
 }
 .left {
   left: 4vw;
   top: 2vh;
   position: absolute;
 }
-/* h1 {
-    display: inline-block;
-    font-family: 'Kite One', sans-serif;
-    font-weight: lighter;
-    background-color: rgb(255, 134, 94);
-    color: white;
-    font-size: 3em;
-    width: 100vw;
-    height: 9vh;
-    margin: 0 auto;
-    padding-top: 0.1em;
-
-  } */
 h2 {
   justify-content: center;
   text-align: center;
@@ -314,8 +286,6 @@ table {
   font-family: 'Gothic A1', sans-serif;
   font-size: 1.25em;
   table-layout: fixed;
-  /* border-bottom: 1px solid rgba(28, 31, 34, 0.5); */
-  /* border-spacing: 20px 30px; */
 }
 th {
   border-bottom: 0.5px solid rgba(86, 112, 138, 0.5);
@@ -323,8 +293,6 @@ th {
 
 td {
   border-bottom: 0.5px solid rgba(28, 31, 34, 0.5);
-  /* padding: 20px;
-  font-size: 20px; */
   vertical-align: top;
 }
 th:nth-child(1) {
