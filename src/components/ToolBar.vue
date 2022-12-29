@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h1 class="title">{{ roomHeader }}</h1>
+    <h1 class="title">{{ roomName }}</h1>
     <div class="navbar">
-      <router-link :to="/roomhome/ + this.id">홈</router-link>
-      <router-link :to="/chathome/ + this.id">채팅</router-link>
-      <router-link :to="/calendar/ + this.id">일정</router-link>
+      <router-link :to="/roomhome/ + this.roomId">홈</router-link>
+      <router-link :to="/chathome/ + this.roomId">채팅</router-link>
+      <router-link :to="/calendar/ + this.roomId">일정</router-link>
     </div>
   </div>
 </template>
@@ -13,20 +13,24 @@
 export default {
   data() {
     return {
-      id: null,
-      roomHeader: '',
+      roomId: null,
+      roomName: '',
     };
   },
-  async created() {
-    await this.$store.dispatch('setName', this.$route.params.id);
-    this.id = this.$route.params.id;
-    this.roomHeader = this.$store.state.Room.roomName;
+  created() {
+    this.getRoomInfo();
+  },
+  methods: {
+    async getRoomInfo() {
+      await this.$store.dispatch('setName', this.$route.params.id);
+      this.roomId = this.$route.params.id;
+      this.roomName = this.$store.state.Room.roomName;
+    },
   },
 };
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap');
 .title {
   margin: 1.9vh auto;
   width: 84vw;
