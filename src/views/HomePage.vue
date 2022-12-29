@@ -25,7 +25,6 @@ export default {
     },
     out() {
       localStorage.removeItem('user');
-      // this.$store.commit('logOut');
       this.$router.push('/login');
     },
   },
@@ -33,14 +32,12 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Kite+One&display=swap');
 div {
   margin: 0 auto;
   font-size: 10px;
   text-align: center;
 }
 .top {
-  /* width: 100vw; */
   height: 9vh;
   background-color: rgb(255, 134, 94);
   font-size: 5.3vh;
