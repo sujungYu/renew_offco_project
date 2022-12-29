@@ -22,7 +22,7 @@ HomePage, NotFoundPage, Modal(전체홈 컴포넌트)
 RoomHomePage, AcceptRoomPage(각방홈 컴포넌트)
 1. common폴더안에 있는 modal컴포넌트를 재활용해 초대링크 창을 만들었음
 2. NavBar를 컴포넌트로 따로 분리
-3. 이번 업데이트에는 vuex만 이용해 데이터 관리를 하려했으나 부여받은 초대링크를 붙여 넣는 과정에서 
+3. 이번 업데이트에는 vuex만 이용해 데이터 관리를 하려했으나 부여받은 초대링크를 붙여 넣는 과정에서
 페이지 새로고침이 발생하고 이로인해 vuex안 state데이터가 초기화되는 문제가 발생했다.
 이러한 문제는 localStorage를 사용하거나 vuex-persistedstate를 이용해 해결할 예정임
 
@@ -48,3 +48,7 @@ css(디자인)
 ## 3.24
 1. state 공유 필요없이 api만 요청하는 것을 store에서 api/index.js로 옮겨 주었다.
 2. store에서도 불필요한 코드를 수정해주었다.
+
+## 12.29
+1. 변수명 및 스타일 수정
+2. 회원가입 유효성 검사 추가
