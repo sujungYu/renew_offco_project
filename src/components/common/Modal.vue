@@ -1,8 +1,7 @@
 <template>
-  <div class="modal" :class="{ active: true }">
-    >
+  <div class="modal-container" :class="{ active: true }">
     <div class="overlay" @click="$emit('close')"></div>
-    <div class="modal-card">
+    <div class="content">
       <slot></slot>
     </div>
   </div>
@@ -13,7 +12,7 @@ export default {};
 </script>
 
 <style scoped>
-.modal,
+.modal-container,
 .overlay {
   width: 100vw;
   height: 100vh;
@@ -25,17 +24,14 @@ export default {};
   opacity: 0.5;
   background-color: black;
 }
-.modal-card {
+.content {
   position: relative;
   max-width: 88vw;
   margin: auto;
   margin-top: 8vh;
   padding-top: 2vh;
-  /* padding: 20px; */
   background-color: rgb(254, 249, 239);
   border-radius: 15px;
-  /* 이부분을 수정해야 todo modal 문제 해결 */
-  /* min-height: 80vh; */
   min-height: 40vh;
   z-index: 10;
   opacity: 1;
