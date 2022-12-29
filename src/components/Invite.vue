@@ -1,12 +1,12 @@
 <template>
-  <div>
-    <h1>초대 링크</h1>
+  <div class="invite-container">
+    <h1 class="invite-text">초대 링크</h1>
     <input
-      v-model="inviteurl"
+      v-model="inviteUrl"
       placeholder="해당 링크로 초대하세요."
       type="text"
     />
-    <button @click="createInviteToken">
+    <button class="click-button" @click="createInviteToken">
       click&nbsp;<i class="fas fa-link"></i>
     </button>
   </div>
@@ -18,7 +18,7 @@ export default {
   data() {
     return {
       token: null,
-      inviteurl: '',
+      inviteUrl: '',
     };
   },
   computed: {
@@ -27,8 +27,8 @@ export default {
     },
   },
   watch: {
-    invitetoken(val) {
-      this.inviteurl = `http://localhost:8080/roomhome/n/${val}`;
+    invitetoken(token) {
+      this.inviteUrl = `http://localhost:8080/roomhome/n/${token}`;
     },
   },
   methods: {
@@ -47,21 +47,19 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap');
-h1 {
+.invite-text {
   margin-top: 8vh;
   font-family: 'Gothic A1', sans-serif;
   font-size: 3em;
   font-weight: normal;
 }
-input {
-  /* margin-top: 3vh; */
+.invite-container input {
   width: 70vw;
   height: 6.2vh;
   border: 1px solid rgb(57, 62, 70);
   border-radius: 15px;
 }
-button {
+.click-button {
   margin: 2vh auto;
   margin-left: 50vw;
   font-size: 1.5em;
