@@ -254,7 +254,6 @@ h2 {
   position: relative;
   justify-content: center;
   text-align: center;
-  /* padding: 0 auto; */
 }
 .arrowLeft {
   position: absolute;
