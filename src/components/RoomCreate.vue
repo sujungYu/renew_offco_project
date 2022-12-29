@@ -1,8 +1,8 @@
 <template>
   <div>
     <h1>방 만들기</h1>
-    <input placeholder="방 이름을 입력하세요" v-model="roomname" type="text" />
-    <span class="addContainer" @click="create">
+    <input placeholder="방 이름을 입력하세요" v-model="roomName" type="text" />
+    <span class="add-room-container" @click="addNewRoom">
       <i class="far fa-plus-square add"></i>
     </span>
   </div>
@@ -13,13 +13,18 @@ import { newRoom } from '@/api/index.js';
 export default {
   data() {
     return {
-      roomname: '',
+      roomName: '',
     };
   },
   methods: {
-    async create() {
+    async addNewRoom() {
+      await this.addNewRoomInfo();
+      await this.$store.dispatch('goToRoom', this.roomName);
+      this.moveNewRoom();
+    },
+    async addNewRoomInfo() {
       const roomInfo = {
-        roomname: this.roomname,
+        roomname: this.roomName,
         managerId: JSON.parse(localStorage.getItem('user')).userId,
         users: [
           {
@@ -30,7 +35,8 @@ export default {
         inviteUrl: {},
       };
       await newRoom(roomInfo);
-      await this.$store.dispatch('goToRoom', this.roomname);
+    },
+    moveNewRoom() {
       this.$router.push(`/roomhome/${this.$store.state.Room.goRoomId}`);
     },
   },
@@ -38,7 +44,6 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap');
 h1 {
   margin: 6vh auto;
   font-family: 'Gothic A1', sans-serif;
@@ -52,7 +57,7 @@ input {
   border: 1px solid rgb(57, 62, 70);
   border-radius: 15px;
 }
-.addContainer {
+.add-room-container {
   position: relative;
   display: inline-block;
 }
