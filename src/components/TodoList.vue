@@ -6,13 +6,15 @@
         this.$store.state.Calendar.month
       }}.{{ this.$store.state.Calendar.day }}
     </p>
+
     <input type="text" v-model="newTodo" />
-    <span class="addContainer" @click="addTodo">
+    <span class="addContainer" @click="addNewTodo">
       <i class="far fa-plus-square add"></i>
     </span>
+
     <div class="todo">
       <ul>
-        <li v-for="(todo, index) in todo" :key="index">
+        <li v-for="(todo, index) in todos" :key="index">
           <i class="far fa-calendar-check check"></i>
           {{ todo.title }}
         </li>
@@ -27,46 +29,45 @@ export default {
   data() {
     return {
       newTodo: '',
-      todos: [],
-      id: '',
+      roomId: '',
     };
   },
   created() {
-    this.id = this.$route.params.id;
+    this.roomId = this.$route.params.id;
     this.init();
   },
   computed: {
-    todo() {
+    todos() {
       return this.$store.getters.showTodo;
     },
   },
   methods: {
     init() {
-      this.$store.dispatch('getTodo', this.id);
+      this.$store.dispatch('getTodo', this.roomId);
     },
-    addTodo() {
-      const todoItem = this.newTodo;
-      if (!todoItem) return;
-
+    async addNewTodo() {
+      await this.newTodoInfo();
+      this.newTodo = '';
+    },
+    async newTodoInfo() {
       const newTodoItem = {
-        title: todoItem,
+        title: this.newTodo,
         createdAt:
           this.$store.state.Calendar.year +
           '-' +
           this.$store.state.Calendar.month +
           '-' +
           this.$store.state.Calendar.day,
-        calendarId: this.id,
+        calendarId: this.roomId,
       };
-      addTodo(newTodoItem);
-      this.newTodo = '';
+      await addTodo(newTodoItem);
+      this.$store.commit('addNewTodo', newTodoItem);
     },
   },
 };
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap');
 h1 {
   margin: 0 auto;
   margin-top: 3vh;
@@ -89,21 +90,13 @@ input {
 }
 .addContainer {
   position: relative;
-  /* float: right; */
   display: inline-block;
-
-  /* left: 10vh; */
-  /* width: 3rem; */
-  /* border-radius: 0 5px 5px 0; */
 }
 .add {
   font-size: 1.9em;
   position: absolute;
   right: 5vw;
   bottom: -0.9vh;
-
-  /* left:40vh;
-  top: -4vh; */
 }
 .todo {
   margin: 3vh auto;
@@ -111,7 +104,6 @@ input {
   border-radius: 15px;
   width: 70vw;
   height: 51vh;
-  /* margin-top: 3vh; */
   background-color: white;
   z-index: 10;
 }
@@ -124,16 +116,10 @@ ul {
 li {
   font-family: 'Gothic A1', sans-serif;
   display: flex;
-  /* min-height: 1vh; */
   height: 5vh;
-
-  /* line-height: 50px; */
-
   margin-left: 1.2em;
   padding-top: 1.9vh;
   padding-bottom: 1.1vh;
-  /* padding-left: 7vw; */
-  /* text-decoration-color : red; */
   border-bottom: 1px solid black;
   width: 57vw;
   display: block;
@@ -141,6 +127,5 @@ li {
 }
 .check {
   margin-right: 6px;
-  /* font-size: 2em; */
 }
 </style>
