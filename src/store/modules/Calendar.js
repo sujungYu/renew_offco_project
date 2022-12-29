@@ -1,4 +1,3 @@
-//Calendar.vue, TodoList.vue vuex
 import axios from 'axios';
 
 const Calendar = {
@@ -20,34 +19,18 @@ const Calendar = {
     },
     addNewTodo(state, todoItem) {
       state.todos.push(todoItem);
-      // localStorage.setItem('userTodos', JSON.stringify(state.todos));
     },
     clearAll(state) {
-      // localStorage.clear();
       state.todos = [];
     },
   },
   actions: {
-    // addTodo({ commit }, payload) {
-    //   //title: 할일, createdAt: 날짜, caleendarId: 방별ID
-    //   axios
-    //     .post(`${'http://localhost:8000'}/todolist`, {
-    //       title: payload.title,
-    //       createdAt: payload.createdAt,
-    //       calendarId: payload.calendarId,
-    //     })
-    //     .then(res => {
-    //       commit('addNewTodo', res.data);
-    //     });
-    // },
     getTodo({ commit }, payload) {
       //해당방ID를 payload로 받음
       // eslint-disable-next-line prettier/prettier
-      axios.get(`${'http://localhost:8000'}/todolist?calendarId=${payload}`)
-        .then(res => {
-          let i;
-          for (i = 0; i < res.data.length; i++) {
-            commit('addNewTodo', res.data[i]);
+      axios.get(`${'http://localhost:8000'}/todolist?calendarId=${payload}`).then(todos => {
+          for (let i = 0; i < todos.data.length; i++) {
+            commit('addNewTodo', todos.data[i]);
           }
         });
     },

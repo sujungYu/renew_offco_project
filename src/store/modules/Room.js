@@ -16,9 +16,6 @@ const Room = {
     TokenId: '',
   },
   mutations: {
-    // initData(state) {
-    //   state.myRooms = [];
-    // },
     initUserData(state) {
       state.roomUsers = [];
     },
@@ -80,17 +77,6 @@ const Room = {
           console.log(err);
         });
     },
-    // async newRoom({ commit }, payload) {
-    //   // eslint-disable-next-line prettier/prettier
-    //     await axios.post(`${'http://localhost:8000'}/rooms`, payload)
-    //     .then(res => {
-    //       commit('newRoom', payload);
-    //       return res.data;
-    //     })
-    //     .catch(err => {
-    //       console.log(err);
-    //     });
-    // },
     async goToRoom({ commit }, payload) {
       // eslint-disable-next-line prettier/prettier
       await axios.get(`${'http://localhost:8000'}/rooms?roomname=${payload}`)
@@ -107,9 +93,6 @@ const Room = {
       // eslint-disable-next-line prettier/prettier
        await axios.get(`${'http://localhost:8000'}/rooms?id=${payload}`)
         .then(res => {
-          // commit('setRoomId', res.data[0].id);
-          // console.log(res.data[0].roomname);
-          // commit('setRoomName', res.data[0].roomname);
           for (let i = 0; i < res.data[0].users.length; i++) {
             userList[i] = res.data[0].users[i].userName;
           }
@@ -121,8 +104,8 @@ const Room = {
         });
     },
     async setName({ commit }, payload) {
-      await axios
-        .get(`${'http://localhost:8000'}/rooms?id=${payload}`)
+      // eslint-disable-next-line prettier/prettier
+      await axios.get(`${'http://localhost:8000'}/rooms?id=${payload}`)
         .then(res => {
           commit('setRoomName', res.data[0].roomname);
           return res.data[0].roomname;
@@ -131,18 +114,7 @@ const Room = {
           console.log(err);
         });
     },
-    // inviteToken({ commit }, payload) {
-    //   // eslint-disable-next-line prettier/prettier
-    //   axios.patch(`${'http://localhost:8000'}/rooms/${this.getters.RoomId}`, {inviteUrl: payload})
-    //     .then(res => {
-    //       commit('setToken', payload);
-    //       console.log(res);
-    //     })
-    //     .catch(err => {
-    //       // commit('useToken', false);
-    //       console.log(err);
-    //     });
-    // },
+
     checkToken({ commit }, payload) {
       // eslint-disable-next-line prettier/prettier
       axios.get(`${'http://localhost:8000'}/rooms?inviteUrl=${payload}`)
