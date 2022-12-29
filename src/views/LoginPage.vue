@@ -15,8 +15,6 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Kite+One&display=swap');
-
 h1 {
   margin: 0.45em auto;
   display: inline-block;
@@ -26,7 +24,5 @@ h1 {
   font-size: 9em;
   width: 62.5vw;
   height: 22.8vh;
-  /* margin-top: 0.45em;
-  margin-bottom: em; */
 }
 </style>
