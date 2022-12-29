@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="signup-page-container">
     <h1>offco</h1>
-    <i class="fas fa-times  cancel" @click="cancel"></i>
+    <i class="fas fa-times cancel" @click="outSingupPage"></i>
     <hr
       style="width:100%; height:2px; border:none; background-color:rgb(255, 134, 94)"
     />
@@ -17,7 +17,7 @@ export default {
     SignupFrom,
   },
   methods: {
-    cancel() {
+    outSingupPage() {
       this.$router.replace('./login');
     },
   },
@@ -25,21 +25,21 @@ export default {
 </script>
 
 <style scoped>
-div {
+.signup-page-container {
   font-size: 10px;
   background-color: white;
   text-align: center;
-  /* margin: auto 0; */
-  /* width: 100vw; */
-  /* height: 100vh; */
+  height: 100vh;
   position: relative;
 }
-
-h1 {
+h1,
+h2 {
   display: inline-block;
   font-family: 'Kite One', sans-serif;
-  font-weight: lighter;
   color: rgb(255, 134, 94);
+}
+h1 {
+  font-weight: lighter;
   font-size: 3em;
   width: 22vw;
   height: 7vh;
@@ -47,24 +47,18 @@ h1 {
   margin-bottom: 0.2em;
 }
 h2 {
-  display: inline-block;
-  font-family: 'Kite One', sans-serif;
   font-weight: normal;
-  color: rgb(255, 134, 94);
   font-size: 18px;
   width: 25vw;
   height: 6vh;
   margin: 0;
 }
 .cancel {
-  /* display: flex; */
   position: absolute;
   color: rgb(255, 134, 94);
   font-size: 3em;
-  /* margin-left: auto; */
   margin-top: 0.5em;
   margin-bottom: 0.2em;
   left: 85%;
-  /* width: 55vw; */
 }
 </style>
