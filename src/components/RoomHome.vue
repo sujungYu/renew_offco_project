@@ -5,10 +5,14 @@
         <h2><i class="fas fa-user-circle user"></i>&nbsp;&nbsp;{{ user }}</h2>
       </li>
     </ul>
-    <button class="invite" @click="invite">
+    <button class="invite" @click="inviteMember">
       멤버초대&nbsp;<i class="fas fa-plus"></i>
     </button>
-    <modal v-show="showModal" :open="showModal" @close="showModal = false">
+    <modal
+      v-show="inviteUrlModal"
+      :open="inviteUrlModal"
+      @close="inviteUrlModal = false"
+    >
       <invite></invite>
     </modal>
   </div>
@@ -25,17 +29,16 @@ export default {
   data() {
     return {
       users: [],
-      showModal: false,
+      inviteUrlModal: false,
     };
   },
   async created() {
-    // this.$store.commit('initUserData');
     await this.$store.dispatch('setUsers', this.$route.params.id);
     this.users = this.$store.state.Room.roomUsers;
   },
   methods: {
-    invite() {
-      this.showModal = !this.showModal;
+    inviteMember() {
+      this.inviteUrlModal = !this.inviteUrlModal;
     },
   },
 };
@@ -69,7 +72,6 @@ h2 {
   font-size: 1.8em;
   font-family: 'Kite One', sans-serif;
   left: 22vw;
-  /* font-weight: 600; */
   position: relative;
 }
 </style>
